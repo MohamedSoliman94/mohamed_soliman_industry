@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Soliman Industry Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400&display=swap">
+<style>
+/* Layout concept: a specimen sheet. Content hangs off a left label column, like callouts on an engineering drawing.
+   The one bold move is the layer-stack explorer in the hero; everything else stays quiet. */
+:root {
+  --bg: #EFF3F5;
+  --surface: #FFFFFF;
+  --ink: #101C26;
+  --muted: #4F606C;
+  --rule: #C7D2D9;
+  --blue: #183C9E;
+  --heat: #CF4326;
+  --l1: #C3D3F3;
+  --l2: #93B1EA;
+  --l3: #5F88D8;
+  --chip: #E3EAEF;
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C141C; --surface: #131F2A; --ink: #E8EEF3; --muted: #9DB0BD; --rule: #273746;
+    --blue: #93B3FF; --heat: #FF8D68; --l1: #2A467F; --l2: #3D66B8; --l3: #5C8AE3; --chip: #1B2A37;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0C141C; --surface: #131F2A; --ink: #E8EEF3; --muted: #9DB0BD; --rule: #273746;
+  --blue: #93B3FF; --heat: #FF8D68; --l1: #2A467F; --l2: #3D66B8; --l3: #5C8AE3; --chip: #1B2A37;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 17px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+}
+a { color: var(--blue); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+.wrap { max-width: 1060px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.08; }
+p { margin: 0; }
+.mono { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+
+/* top bar */
+.bar { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; align-items: baseline; padding-block: 20px; border-bottom: 1px solid var(--rule); }
+.bar nav { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+.bar nav a { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+.bar nav a:hover { color: var(--blue); }
+
+/* hero */
+.hero { padding-block: 48px 40px; display: grid; gap: 28px; }
+.idrow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 22px 36px; align-items: center; }
+.portrait { width: 210px; height: 210px; object-fit: cover; border-radius: 50%; border: 1px solid var(--rule); display: block; }
+@media (max-width: 760px) { .idrow { grid-template-columns: minmax(0, 1fr); } .portrait { order: -1; width: 150px; height: 150px; } }
+.hero h1 { font-size: clamp(2.6rem, 8vw, 5.4rem); font-stretch: 118%; font-weight: 800; letter-spacing: -.02em; }
+.hero .role { font-family: var(--font-display); font-weight: 500; font-size: clamp(1.05rem, 2.4vw, 1.3rem); color: var(--muted); font-stretch: 100%; }
+.hero .lead { font-size: clamp(1.2rem, 2.6vw, 1.55rem); line-height: 1.4; max-width: 34em; }
+.links { display: flex; flex-wrap: wrap; gap: 10px 22px; font-family: var(--font-mono); font-size: 13px; }
+.links a, .links span { color: var(--blue); }
+.copy { font: inherit; background: none; border: 1px solid var(--rule); color: var(--ink); padding: 2px 10px; cursor: pointer; margin-left: 8px; border-radius: 3px; }
+.copy:hover { border-color: var(--blue); color: var(--blue); }
+
+/* explorer */
+.explorer { background: var(--surface); border: 1px solid var(--rule); }
+.ex-head { padding: 14px 18px 0; display: flex; flex-wrap: wrap; gap: 6px 18px; justify-content: space-between; align-items: baseline; }
+.ex-head h2 { font-size: 1.05rem; font-weight: 700; font-stretch: 100%; }
+.ex-body { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+.ex-fig { padding: 8px 12px 8px; min-width: 0; display: flex; align-items: center; }
+.ex-fig svg { width: 100%; height: auto; display: block; }
+.ex-side { padding: 14px 18px 18px; border-left: 1px solid var(--rule); display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.toggles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.tg { font-family: var(--font-display); font-size: 14px; font-weight: 600; text-align: left; padding: 9px 10px; border: 1px solid var(--rule); background: var(--bg); color: var(--ink); cursor: pointer; border-radius: 3px; display: flex; gap: 8px; align-items: center; min-width: 0; }
+.tg i { flex: none; width: 12px; height: 12px; border: 1.5px solid var(--muted); border-radius: 2px; }
+.tg[aria-pressed="true"] { border-color: var(--blue); background: color-mix(in srgb, var(--blue) 12%, var(--surface)); }
+.tg[aria-pressed="true"] i { background: var(--blue); border-color: var(--blue); }
+.readout { border-top: 1px solid var(--rule); padding-top: 12px; display: grid; gap: 6px; font-size: 15.5px; line-height: 1.5; min-height: 11.5em; align-content: start; }
+.readout .tag { font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--heat); }
+.readout b { font-family: var(--font-display); font-weight: 700; font-size: 1.02rem; line-height: 1.25; }
+.note { font-size: 13.5px; color: var(--muted); padding: 0 18px 14px; }
+@media (max-width: 760px) { .ex-body { grid-template-columns: 1fr; } .ex-side { border-left: 0; border-top: 1px solid var(--rule); } }
+
+/* svg tokens */
+.ly1 { fill: var(--l1); } .ly2 { fill: var(--l2); } .ly3 { fill: var(--l3); }
+.edge { stroke: var(--ink); stroke-width: 1; fill: none; }
+.spr { stroke: var(--heat); stroke-width: 1.6; fill: none; stroke-linejoin: round; }
+.gnd { stroke: var(--muted); stroke-width: 1.4; }
+.pin { fill: var(--surface); stroke: var(--ink); stroke-width: 1.2; }
+.lbl { font-family: var(--font-mono); font-size: 10.5px; fill: var(--muted); letter-spacing: .04em; }
+.lbl-h { fill: var(--heat); }
+
+/* sections */
+section { padding-block: 44px; border-top: 1px solid var(--rule); display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 20px 40px; }
+section > h2 { font-size: 1.05rem; font-weight: 700; font-stretch: 112%; text-transform: uppercase; letter-spacing: .04em; padding-top: 4px; }
+section > h2 small { display: block; font-family: var(--font-mono); font-weight: 400; font-size: 12px; text-transform: none; letter-spacing: .02em; color: var(--muted); margin-top: 6px; font-stretch: 100%; }
+@media (max-width: 760px) { section { grid-template-columns: 1fr; padding-block: 34px; } }
+
+.proj { display: grid; gap: 14px; padding-block: 28px; border-top: 1px dashed var(--rule); min-width: 0; }
+.proj:first-child { border-top: 0; padding-top: 0; }
+.proj:last-child { padding-bottom: 0; }
+.proj h3 { font-size: clamp(1.3rem, 3vw, 1.7rem); font-weight: 700; font-stretch: 105%; letter-spacing: -.005em; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
+.chip { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .05em; text-transform: uppercase; background: var(--chip); color: var(--ink); padding: 3px 8px; border-radius: 3px; }
+.chip.hot { background: transparent; border: 1px solid var(--heat); color: var(--heat); }
+.proj p + p { margin-top: 10px; }
+.proj ul { margin: 0; padding-left: 1.15em; display: grid; gap: 6px; }
+.proj li::marker { color: var(--muted); }
+.figs { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); align-items: start; }
+figure { margin: 0; min-width: 0; }
+figure .plate { background: #fff; border: 1px solid var(--rule); padding: 8px; }
+figure img { display: block; width: 100%; height: auto; max-height: 460px; object-fit: contain; margin: 0 auto; }
+figcaption { font-size: 14px; color: var(--muted); margin-top: 8px; line-height: 1.45; }
+.limits { font-size: 15px; color: var(--muted); border-left: 2px solid var(--rule); padding-left: 14px; }
+
+.rows { display: grid; gap: 0; }
+.row { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 4px 20px; padding-block: 14px; border-top: 1px dashed var(--rule); }
+.row:first-child { border-top: 0; padding-top: 0; }
+.row .when { font-family: var(--font-mono); font-size: 13px; color: var(--muted); padding-top: 3px; font-variant-numeric: tabular-nums; }
+.row .what { min-width: 0; overflow-wrap: anywhere; }
+.row .what em { font-style: italic; }
+.row .sub { font-size: 15px; color: var(--muted); margin-top: 3px; }
+@media (max-width: 520px) { .row { grid-template-columns: 1fr; } }
+.cols { display: grid; gap: 28px 40px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+.cols h3 { font-size: .95rem; font-weight: 700; font-stretch: 100%; margin-bottom: 8px; }
+.cols ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 15.5px; }
+.cols li { overflow-wrap: anywhere; }
+.hero .lead, .proj p, .proj li, .limits, .row .what, .row .sub { text-align: justify; hyphens: auto; }
+figcaption { text-align: center; }
+.pubfigs { padding: 2px 0 14px 116px; }
+.pubfigs img { max-height: 250px; }
+@media (max-width: 520px) { .pubfigs { padding-left: 0; } }
+footer { border-top: 1px solid var(--rule); padding-block: 28px 56px; font-size: 14px; color: var(--muted); }
+
+.glance { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 16px; padding-bottom: 44px; }
+.glance div { border-top: 2px solid var(--heat); padding-top: 12px; min-width: 0; }
+.glance b { display: block; font-family: var(--font-display); font-weight: 800; font-stretch: 112%; font-size: clamp(2rem, 5vw, 2.8rem); letter-spacing: -.02em; line-height: 1; color: var(--ink); }
+.glance span { display: block; margin-top: 8px; font-size: 15px; line-height: 1.45; color: var(--muted); text-align: left; }
+.case { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 10px 18px; align-items: baseline; }
+.case .k { font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--heat); }
+.case .v { min-width: 0; text-align: justify; hyphens: auto; }
+.case ul { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; }
+.case li::marker { color: var(--muted); }
+@media (max-width: 560px) { .case { grid-template-columns: 1fr; gap: 2px; } .case .v { margin-bottom: 8px; } }
+.secnote { font-size: 15px; color: var(--muted); text-align: justify; margin-bottom: 18px; }
+.role-line { display: block; margin-top: 2px; }
+.pub-note { font-size: 15px; color: var(--muted); margin-top: 14px; }
+
+.pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr)); gap: 20px; }
+.pcard { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--rule); text-decoration: none; color: var(--ink); min-width: 0; transition: border-color .15s, transform .15s; }
+.pcard:hover { border-color: var(--blue); transform: translateY(-2px); }
+.pcard .thumb { aspect-ratio: 4 / 3; background: #fff; border-bottom: 1px solid var(--rule); overflow: hidden; }
+.pcard .thumb img { width: 100%; height: 100%; display: block; object-fit: cover; }
+.pcard .thumb.contain img { object-fit: contain; padding: 10px; }
+.pc-body { padding: 14px 16px 16px; display: grid; gap: 9px; align-content: start; }
+.pc-body h3 { font-size: 1.08rem; font-weight: 700; font-stretch: 100%; line-height: 1.22; }
+.pc-body p { font-size: 15px; line-height: 1.45; color: var(--muted); text-align: left; }
+.more { font-family: var(--font-mono); font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: var(--blue); }
+@media (prefers-reduced-motion: reduce) { .pcard { transition: none; } .pcard:hover { transform: none; } }
+.page { padding-top: 34px; border-top: 0; }
+.page h1 { font-size: clamp(1.9rem, 5vw, 3rem); font-weight: 800; font-stretch: 112%; letter-spacing: -.015em; line-height: 1.08; text-wrap: balance; }
+.back { color: var(--muted); text-decoration: none; }
+.back:hover { color: var(--blue); }
+.pager { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px 24px; padding-block: 28px; border-top: 1px solid var(--rule); margin-top: 28px; }
+.pager a { display: grid; gap: 4px; text-decoration: none; color: var(--ink); max-width: 46%; min-width: 0; }
+.pager a b { font-family: var(--font-display); font-weight: 700; font-size: 1rem; line-height: 1.25; }
+.pager a:hover b { color: var(--blue); }
+.pager .nx { text-align: right; margin-left: auto; }
+@media (max-width: 560px) { .pager a { max-width: 100%; } }
+figure .plate a { display: block; cursor: zoom-in; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <span class="mono">Mohamed Soliman · Industry portfolio</span>
+    <nav aria-label="Sections">
+      <a href="#projects">Industry projects</a><a href="#industry">Companies</a><a href="#research">Research</a><a href="#capabilities">Capabilities</a><a href="#background">Background</a><a href="#contact">Contact</a>
+    </nav>
+  </header>
+  <div class="hero">
+    <div class="idrow">
+      <div style="display:grid;gap:14px">
+        <h1>Mohamed Soliman</h1>
+        <p class="role">Mechanical engineer · Structural and thermomechanical analysis · PhD candidate, Southern Methodist University, expected May 2027</p>
+      </div>
+      <img class="portrait" src="img/portrait.jpg" alt="Portrait of Mohamed Soliman" width="210" height="210">
+    </div>
+    <p class="lead">I analyze and design mechanical and structural systems, from steel structures to multi-layered structures. I build fast physics-based models and check them against commercial finite element software.</p>
+    <div class="links">
+      <a href="https://linkedin.com/in/mohamed-a-soliman-phd">LinkedIn</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="glance"><div><b>50–90%</b><span>lower computational cost for parametric studies, closed-form models checked against COMSOL</span></div><div><b>85%</b><span>shorter runtime and over 80% less memory from an iterative solver for elastoplastic damage</span></div><div><b>78%</b><span>less design and drafting time from a parametric template library for standard machine products</span></div></div>
+
+  <section id="projects">
+    <h2>Industry projects<small>Egypt, 2019–2023</small></h2>
+    <div><p class="secnote">Structural and mechanical design and analysis in Egypt, 2019–2023, delivered as a subcontractor engineer. Client names and details that are not mine to share are left out.</p><div class="pgrid"><a class="pcard" href="cell-on-wheels-trailer.html"><div class="thumb "><img src="img/t_cow_r1.jpg" alt="" loading="lazy"></div><div class="pc-body"><div class="meta"><span class="chip ">Shop drawings</span><span class="chip">Egypt</span></div><h3>Structural body of a trailer for a 40 m cell-on-wheels tower</h3><p>Steel frame, outriggers and mast support of a trailer for a 40 m cell-on-wheels tower.</p><span class="more">View project →</span></div></a><a class="pcard" href="rain-gutter.html"><div class="thumb contain"><img src="img/t_rg_stress.jpg" alt="" loading="lazy"></div><div class="pc-body"><div class="meta"><span class="chip">2021</span><span class="chip ">Structural analysis</span><span class="chip">Egypt</span></div><h3>Rain gutter system for a metro station</h3><p>Finite element check of a long steel gutter: 58.5 MPa against a 235 MPa yield strength.</p><span class="more">View project →</span></div></a><a class="pcard" href="steel-doors-ladders-handrails.html"><div class="thumb "><img src="img/t_sf_door_photo.jpg" alt="" loading="lazy"></div><div class="pc-body"><div class="meta"><span class="chip ">Steel fabrication</span><span class="chip">Egypt</span></div><h3>Steel doors, ladders, handrails and fences for a development in the new capital</h3><p>An entrance door, a caged ladder, a glass handrail and a picket fence.</p><span class="more">View project →</span></div></a><a class="pcard" href="mep-enclosures.html"><div class="thumb "><img src="img/t_mp_site.jpg" alt="" loading="lazy"></div><div class="pc-body"><div class="meta"><span class="chip ">Fabrication</span><span class="chip">Egypt</span></div><h3>Aluminum enclosures for outdoor MEP cabinets at a coastal resort</h3><p>Louvered aluminum enclosures for outdoor MEP cabinets.</p><span class="more">View project →</span></div></a><a class="pcard" href="sliding-gate.html"><div class="thumb contain"><img src="img/t_mp_gate.jpg" alt="" loading="lazy"></div><div class="pc-body"><div class="meta"><span class="chip ">Fabrication</span><span class="chip">Egypt</span></div><h3>Hot-dip galvanized sliding gate</h3><p>Hot-dip galvanized sliding gate with a 23.3 m plan view.</p><span class="more">View project →</span></div></a><a class="pcard" href="truss-shades.html"><div class="thumb "><img src="img/t_rc_shade_site.jpg" alt="" loading="lazy"></div><div class="pc-body"><div class="meta"><span class="chip ">Steel structures</span><span class="chip">Egypt</span></div><h3>Steel truss shades for a commercial development</h3><p>Cantilever and free-standing steel truss shades.</p><span class="more">View project →</span></div></a><a class="pcard" href="gates-fences-handrails.html"><div class="thumb "><img src="img/t_rc_fence1.jpg" alt="" loading="lazy"></div><div class="pc-body"><div class="meta"><span class="chip ">Fabrication</span><span class="chip">Egypt</span></div><h3>Gates, fences and stainless steel handrails for the same development</h3><p>Picket fences, a rolling gate leaf and stainless steel handrails.</p><span class="more">View project →</span></div></a><a class="pcard" href="entrance-gate-structure.html"><div class="thumb "><img src="img/t_rc_gate_site.jpg" alt="" loading="lazy"></div><div class="pc-body"><div class="meta"><span class="chip ">Steel structures</span><span class="chip">Egypt</span></div><h3>Entrance gate structure of tall steel posts</h3><p>A gate structure of tall steel posts of varying height.</p><span class="more">View project →</span></div></a><a class="pcard" href="gabarit-gantry.html"><div class="thumb contain"><img src="img/t_gb_sap3d.jpg" alt="" loading="lazy"></div><div class="pc-body"><div class="meta"><span class="chip ">Structural analysis</span><span class="chip">Egypt</span></div><h3>Height-gauge gantry (gabarit) for a metro project in Cairo</h3><p>Height-gauge gantry for a metro project, modelled in SAP2000.</p><span class="more">View project →</span></div></a><a class="pcard" href="feature-wall.html"><div class="thumb "><img src="img/t_fw_iso.jpg" alt="" loading="lazy"></div><div class="pc-body"><div class="meta"><span class="chip">2021</span><span class="chip ">Mechanical design</span><span class="chip">Egypt</span></div><h3>Perforated feature wall</h3><p>Perforated feature wall of three panels on four posts.</p><span class="more">View project →</span></div></a><a class="pcard" href="port-gate-and-railings.html"><div class="thumb "><img src="img/t_pt_gate.jpg" alt="" loading="lazy"></div><div class="pc-body"><div class="meta"><span class="chip ">Fabrication</span><span class="chip">Egypt</span></div><h3>Sliding gate, guard railings and handrails for a port project</h3><p>Sliding gates 12 m long, yellow guard railings and stainless steel handrails for a port.</p><span class="more">View project →</span></div></a></div></div>
+  </section>
+  <section id="industry">
+    <h2>Companies<small>Egypt</small></h2>
+    <div><p class="secnote">My employers worked as subcontractors, so clients and project names are described in general terms.</p><div class="rows"><div class="row"><span class="when">2021–2023</span><div class="what"><b>Design Engineer, then Manager of the Technical Office</b>, A1 Construction Steel Structure, Cairo<ul style="margin:8px 0 0;padding-left:1.1em;display:grid;gap:6px"><li>Joined as a design engineer and founded the technical office from scratch, doing the design, simulation and drawings myself at first (SAP2000, SolidWorks, AutoCAD).</li><li>Trained a team of engineers and then led it, reviewing structural design, simulation and drawings for large-scale steel structures to check safety and compliance with engineering standards.</li><li>Wrote bills of materials and production plans that link design to fabrication.</li></ul></div></div><div class="row"><span class="when">2019–2021</span><div class="what"><b>Mechanical Design Engineer, part-time</b>, Generals for Engineering Solutions, Zagazig<ul style="margin:8px 0 0;padding-left:1.1em;display:grid;gap:6px"><li>Designed mechanical systems, including hydraulic presses and production lines, in SolidWorks with complete assembly and fabrication drawings.</li><li>Built a library of parametric templates for the company's standard products, which cut design and drafting time by 78%.</li></ul></div></div></div></div>
+  </section>
+  <section id="research">
+    <h2>Research<small>PhD and M.Sc.</small></h2>
+    <div><div class="pgrid"><a class="pcard" href="multilayer-structure-models.html"><div class="thumb contain"><img src="img/t_mm_1.jpg" alt="" loading="lazy"></div><div class="pc-body"><div class="meta"><span class="chip">2023–now</span><span class="chip ">Published</span><span class="chip">SLB, Genvia</span></div><h3>Fast thermomechanical models for multi-layered structures</h3><p>Analytical thermomechanical models of multi-layered structures, checked against COMSOL.</p><span class="more">View project →</span></div></a><a class="pcard" href="topology-optimization.html"><div class="thumb contain"><img src="img/t_topo.jpg" alt="" loading="lazy"></div><div class="pc-body"><div class="meta"><span class="chip">2026</span><span class="chip hot">Preliminary</span><span class="chip">Own initiative</span></div><h3>Topology optimization of a five-layer stack under load and heat</h3><p>Topology optimization of a five-layer stack under mechanical and thermal load.</p><span class="more">View project →</span></div></a><a class="pcard" href="damage-contact-solver.html"><div class="thumb contain"><img src="img/t_dm_cover.jpg" alt="" loading="lazy"></div><div class="pc-body"><div class="meta"><span class="chip">2022</span><span class="chip ">Published</span><span class="chip">M.Sc. thesis</span></div><h3>A faster solver for elastoplastic damage and contact</h3><p>A faster solver for elastoplastic damage and contact problems.</p><span class="more">View project →</span></div></a><a class="pcard" href="size-dependent-plates.html"><div class="thumb contain"><img src="img/t_cp_2.jpg" alt="" loading="lazy"></div><div class="pc-body"><div class="meta"><span class="chip">2025–2026</span><span class="chip hot">In preparation</span><span class="chip">Sensors, actuators, solar cells</span></div><h3>Size-dependent models for micro and nano multilayer devices</h3><p>Couple-stress plate models for micro and nano multilayer devices.</p><span class="more">View project →</span></div></a></div><h3 style="margin:34px 0 14px;font-size:1.05rem">Publications</h3><div class="rows"><div class="row"><span class="when">2026</span><div class="what">M. Soliman, X.-L. Gao. Thermomechanical responses of an imperfectly bonded multi-layered structure resting on an elastic foundation. <em>Mathematics and Mechanics of Solids</em>, online 27 Sept 2026. <a href="https://doi.org/10.1177/10812865261480362">doi:10.1177/10812865261480362</a></div></div><div class="row"><span class="when">2026</span><div class="what">M. Soliman, X.-L. Gao. Analytical model for imperfectly bonded multi-layered structures with creep deformations under general thermomechanical loading. <em>Mechanics of Materials</em> 221, 105735. <a href="https://doi.org/10.1016/j.mechmat.2026.105735">doi:10.1016/j.mechmat.2026.105735</a></div></div><div class="row"><span class="when">2025</span><div class="what">M. Soliman, X.-L. Gao, A. Battentier. Analytical model for multi-layered structures with creep deformations under general thermomechanical loading. <em>Composite Structures</em> 370, 119413.</div></div><div class="row"><span class="when">2022</span><div class="what">A.G. El-Shafei, M.A. Attia, M.A. Al Shourbagy. An iterative residual-based procedure for solving coupled elastoplastic damage problems. <em>Mechanics of Advanced Materials and Structures</em> 29, 6485–6494.</div></div><div class="row"><span class="when">2021</span><div class="what">M. El-Shourbagy, M.A. Attia, A.G. El-Shafei. Damage prediction and evolution using uncoupled elastoplastic-damage Lemaitre's and Vaz's models. <em>EIJEST</em> 36(2), 33–42. <a href="https://doi.org/10.21608/eijest.2021.69915.1063">doi:10.21608/eijest.2021.69915.1063</a></div></div></div><p class="pub-note">Peer-reviewed. Results were also presented at ASME IMECE 2026 (accepted), USNC/TAM 2026 and ASME SSDM 2025.</p></div>
+  </section>
+  <section id="capabilities">
+    <h2>Capabilities<small>By kind of work</small></h2>
+    <div class="cols"><div><h3>Analysis and simulation</h3><ul><li>Abaqus, including custom UMAT subroutines</li><li>COMSOL Multiphysics</li><li>SAP2000 for steel structures</li><li>Thermomechanical, creep, contact and damage problems</li><li>Topology optimization with adjoint sensitivities</li></ul></div><div><h3>Programming</h3><ul><li>MATLAB</li><li>FORTRAN, including a 2D finite element code</li><li>Python with NumPy and SciPy</li></ul></div><div><h3>Design and drafting</h3><ul><li>SolidWorks, Certified Professional, with Advanced certifications in Surfacing, Simulation, Weldments, Sheet Metal, Mold Making and Drawing Tools</li><li>AutoCAD and Autodesk Inventor</li><li>Assembly and fabrication drawings, bills of materials, tender documentation</li></ul></div><div><h3>Testing and teamwork</h3><ul><li>Leading the renovation of the Mechanics of Materials Laboratory: assembly, installation and commissioning of new testing equipment</li><li>Training and supervising engineers and teaching assistants</li><li>Teaching assistant for eight courses at Zagazig University and for mechanics of materials laboratories at SMU</li></ul></div></div>
+  </section>
+  <section id="background">
+    <h2>Background</h2>
+    <div class="cols"><div><h3>Education</h3><ul><li><b>Ph.D., Mechanical Engineering</b>, Southern Methodist University, expected May 2027. Adviser: Prof. Xin-Lin Gao.</li><li><b>M.Sc., Mechanical Design and Production Engineering</b>, Zagazig University, 2022.</li><li><b>B.Sc., Mechanical Design and Production Engineering</b>, Zagazig University, 2017, Excellent with Honors. Graduation project: design of a three-arm turnstile.</li></ul></div><div><h3>Awards, training and service</h3><ul><li>Outstanding Graduate Student Award, Lyle School of Engineering, SMU (2026)</li><li>Provost's Summer Research Grant, SMU (2025)</li><li>Alpha Chi Honor Society</li><li>Best Lecture Assistant, Zagazig University (2022)</li><li>Short course: phase-field approach to brittle fracture, USACM (2026)</li><li>Treasurer, Lyle Graduate Student Council Board (2026–now)</li></ul></div></div>
+  </section>
+  <section id="contact">
+    <h2>Contact</h2>
+    <div style="display:grid;gap:10px">
+      <p>Dallas, Texas</p>
+      <p><span id="mail" style="font-family:var(--font-mono);font-size:15px;user-select:all">masoliman@smu.edu</span><button class="copy" id="copy" type="button">Copy</button><span id="copied" class="mono" style="margin-left:10px" aria-live="polite"></span></p>
+      <p class="links"><a href="https://linkedin.com/in/mohamed-a-soliman-phd">LinkedIn</a></p>
+    </div>
+  </section>
+  <footer>Client and project names are described in general terms. Unpublished work is shown as preliminary and may change.</footer>
+</div>
+<script>
+(function () {
+  var cb = document.getElementById("copy"), msg = document.getElementById("copied"), mail = document.getElementById("mail");
+  cb.addEventListener("click", function () {
+    function sel() { var r = document.createRange(); r.selectNodeContents(mail); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); msg.textContent = "Selected"; }
+    try { navigator.clipboard.writeText(mail.textContent).then(function () { msg.textContent = "Copied"; }, sel); } catch (e) { sel(); }
+  });
+})();
+</script>
+
+</body>
+</html>
